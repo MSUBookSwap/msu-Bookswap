@@ -1811,7 +1811,17 @@ function handleSaveProfile(e) {
     showToast("บันทึกข้อมูลการตั้งค่าเรียบร้อยแล้ว!");
     renderProfile();
 }
-
+    function closeModal(modalId) {
+  // ถ้ากดปิดโดยไม่ส่ง id มา ให้ปิด modal-container (หน้าโพสต์ขาย) เป็นหลัก
+  const targetId = modalId || 'modal-container';
+  const modal = document.getElementById(targetId) || document.getElementById('create-quiz-modal');
+  
+  if (modal) {
+    modal.classList.add('hidden');
+    modal.classList.remove('active', 'flex');
+    modal.style.display = 'none';
+  }
+}
 // CREATE NEW LISTING WITH LOCATION SPECIFICATION
 function openNewListingModal() {
     const modal = document.getElementById('modal-container');
