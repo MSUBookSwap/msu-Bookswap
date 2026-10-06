@@ -1967,11 +1967,12 @@ window.onload = function() {
     alert('ระบบสร้างเกมกำลังเปิดใช้งาน...');
   }
 }
-
 function openCreateQuizModal() {
-  const modal = document.getElementById('create-quiz-modal') || document.getElementById('game-creator-modal');
+  const modal = document.getElementById('create-quiz-modal');
   if (modal) {
-    modal.classList.add('active');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    modal.style.display = 'flex';
   } else {
     alert('กำลังเปิดหน้าต่างสร้างเกม...');
   }
@@ -1981,23 +1982,34 @@ function openGameCreator() {
   openCreateQuizModal();
 }
 
+function closeModal(modalId) {
+  const modal = document.getElementById(modalId);
+  if (modal) {
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    modal.style.display = 'none';
+  }
+}
+
 function saveNewQuiz() {
-  const title = (document.getElementById('quiz-title-input') || document.getElementById('game-title-input')).value;
-  const subject = (document.getElementById('quiz-subject-input') || document.getElementById('game-subject-input')).value;
+  const title = document.getElementById('quiz-title-input').value;
+  const subject = document.getElementById('quiz-subject-input').value;
   
   if (!title) {
     alert('กรุณากรอกชื่อเกมก่อนครับ');
     return;
   }
   
-  alert(`สร้างเกม "${title}" เรียบร้อยแล้ว!`);
+  alert(`สร้างเกม "${title}" ในรายวิชา ${subject || 'ทั่วไป'} เรียบร้อยแล้ว!`);
   closeModal('create-quiz-modal');
 }
 
 function playQuiz(quizId) {
   alert('กำลังเข้าสู่หน้าเล่นเกมทบทวนบทเรียน...');
 }
-    <!-- Modal หน้าต่างฟอร์มสร้างเกมทบทวน -->
+</script>
+
+<!-- Modal หน้าต่างฟอร์มสร้างเกมทบทวน -->
 <div class="modal fixed inset-0 bg-black/50 hidden items-center justify-center z-50 p-4" id="create-quiz-modal">
   <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl relative">
     <div class="flex justify-between items-center mb-4 border-b pb-2">
@@ -2017,6 +2029,7 @@ function playQuiz(quizId) {
     </div>
   </div>
 </div>
+
 </script>
 </body>
 </html>
