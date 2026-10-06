@@ -1968,19 +1968,33 @@ window.onload = function() {
   }
 }
 
+function openCreateQuizModal() {
+  const modal = document.getElementById('create-quiz-modal') || document.getElementById('game-creator-modal');
+  if (modal) {
+    modal.classList.add('active');
+  } else {
+    alert('กำลังเปิดหน้าต่างสร้างเกม...');
+  }
+}
+
+function openGameCreator() {
+  openCreateQuizModal();
+}
+
 function saveNewQuiz() {
-  const title = document.getElementById('quiz-title-input').value;
-  const subject = document.getElementById('quiz-subject-input').value;
+  const title = (document.getElementById('quiz-title-input') || document.getElementById('game-title-input')).value;
+  const subject = (document.getElementById('quiz-subject-input') || document.getElementById('game-subject-input')).value;
   
   if (!title) {
     alert('กรุณากรอกชื่อเกมก่อนครับ');
     return;
   }
   
-  alert(`สร้างเกม "${title}" ในรายวิชา ${subject || 'ทั่วไป'} เรียบร้อยแล้ว!`);
+  alert(`สร้างเกม "${title}" เรียบร้อยแล้ว!`);
   closeModal('create-quiz-modal');
 }
-    function playQuiz(quizId) {
+
+function playQuiz(quizId) {
   alert('กำลังเข้าสู่หน้าเล่นเกมทบทวนบทเรียน...');
 }
 </script>
